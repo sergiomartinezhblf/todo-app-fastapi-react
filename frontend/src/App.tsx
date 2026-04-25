@@ -7,6 +7,7 @@ type Task = {
   date: string;
 };
 
+const API = import.meta.env.VITE_API_URL
   
 
 function App() {
@@ -17,7 +18,7 @@ function App() {
   const [editingId,setEditingId] = useState<number | null>(null);
 
   const fetchTask = async () =>{
-  const res = await fetch("http://todo-backend-0oc6.onrender.com/api/tasks");
+  const res = await fetch(`${API}/api/tasks`);
   const data = await res.json();
   console.log(data)
   setTasks(data);
@@ -27,7 +28,7 @@ function App() {
     e.preventDefault();
 
     if (editingId){
-      await fetch(`http://todo-backend-0oc6.onrender.com/api/tasks/${editingId}`,{
+      await fetch(`${API}/api/tasks/${editingId}`,{
         method:"PUT",
         headers: {"Content-Type":"application/json"},
         body: JSON.stringify({title,description,date})
@@ -55,7 +56,7 @@ function App() {
     e.preventDefault();
     console.log("click detectado")
 
-    await fetch("http://todo-backend-0oc6.onrender.com/api/tasks",{
+    await fetch(`${API}/api/tasks`,{
       method:"POST",
       headers: {
         "Content-Type":"application/json",
@@ -71,7 +72,7 @@ function App() {
   }
 
   const deleteTask = async (id: number) =>{
-    const url = "http://todo-backend-0oc6.onrender.com/api/tasks/" + id
+    const url = `${API}/api/tasks/` + id
 
     console.log("DELETE URL",url)
 
@@ -85,7 +86,7 @@ function App() {
   }
 
   const updateTask = async (id: number) => {
-    await fetch(`http://todo-backend-0oc6.onrender.com/api/tasks/${id}`,{
+    await fetch(`${API}/api/tasks/${id}`,{
       method:"PUT",
       headers:{
         "Content-Type": "application/json",
@@ -98,6 +99,7 @@ function App() {
 
 
 useEffect(()=>{
+     console.log("USE EFFECT CORRIENDO")
      fetchTask();
 },[]);
 
