@@ -17,7 +17,7 @@ function App() {
   const [editingId,setEditingId] = useState<number | null>(null);
 
   const fetchTask = async () =>{
-  const res = await fetch("http://localhost:8000/api/tasks");
+  const res = await fetch("http://todo-backend-0oc6.onrender.com/api/tasks");
   const data = await res.json();
   console.log(data)
   setTasks(data);
@@ -27,7 +27,7 @@ function App() {
     e.preventDefault();
 
     if (editingId){
-      await fetch(`http://localhost:8000/api/tasks/${editingId}`,{
+      await fetch(`http://todo-backend-0oc6.onrender.com/api/tasks/${editingId}`,{
         method:"PUT",
         headers: {"Content-Type":"application/json"},
         body: JSON.stringify({title,description,date})
@@ -55,7 +55,7 @@ function App() {
     e.preventDefault();
     console.log("click detectado")
 
-    await fetch("http://localhost:8000/api/tasks",{
+    await fetch("http://todo-backend-0oc6.onrender.com/api/tasks",{
       method:"POST",
       headers: {
         "Content-Type":"application/json",
@@ -71,7 +71,7 @@ function App() {
   }
 
   const deleteTask = async (id: number) =>{
-    const url = "http://localhost:8000/api/tasks/" + id
+    const url = "http://todo-backend-0oc6.onrender.com/api/tasks/" + id
 
     console.log("DELETE URL",url)
 
@@ -85,7 +85,7 @@ function App() {
   }
 
   const updateTask = async (id: number) => {
-    await fetch(`http://localhost:8000/api/tasks/${id}`,{
+    await fetch(`http://todo-backend-0oc6.onrender.com/api/tasks/${id}`,{
       method:"PUT",
       headers:{
         "Content-Type": "application/json",
