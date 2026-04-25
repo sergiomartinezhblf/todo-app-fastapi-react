@@ -1,12 +1,12 @@
 from fastapi import FastAPI, Request, Form 
-from fastapi.responses import HTMLResponse, RedirectResponse
+from fastapi.responses import HTMLResponse, RedirectResponse, Response
 from fastapi.templating import Jinja2Templates
 from database import get_connection, init_db
 from fastapi import Body
 from fastapi.middleware.cors import CORSMiddleware 
 
 app = FastAPI()
-templates = Jinja2Templates(directory = "templates")
+
 
 origins = [
     "http//localhost:5173",
@@ -19,6 +19,8 @@ app.add_middleware(
     allow_methods=["*"],
     allow_headers=["*"],
 )
+
+templates = Jinja2Templates(directory = "templates")
 
 init_db()
 
@@ -117,4 +119,4 @@ def delete_task(task_id: int):
 
 @app.options("/{full_path:path}")
 def options_handler(full_path:str):
-    return {}
+    return Response()
