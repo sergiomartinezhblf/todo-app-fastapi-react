@@ -1,4 +1,4 @@
-import React, { useState,useEffect } from 'react'
+import { useState,useEffect } from 'react'
 
 type Task = {
   id: number;
@@ -83,18 +83,6 @@ function App() {
     console.log("status",res.status)
     await fetchTask()
   
-  }
-
-  const updateTask = async (id: number) => {
-    await fetch(`${API}/api/tasks/${id}`,{
-      method:"PUT",
-      headers:{
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({title,description,date})
-    });
-
-    await fetchTask()
   }
 
 
