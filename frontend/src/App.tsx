@@ -7,7 +7,7 @@ type Task = {
   date: string;
 };
 
-const API = import.meta.env.VITE_API_URL
+const API = "https://todo-backend-0oc6.onrender.com"
   
 
 function App() {
