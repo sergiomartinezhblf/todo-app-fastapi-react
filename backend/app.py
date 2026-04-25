@@ -115,3 +115,6 @@ def delete_task(task_id: int):
     return {"message":"Task deleted"}
 
 
+@app.options("/{full_path:path}")
+def options_handler(full_path:str):
+    return {}
