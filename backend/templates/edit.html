@@ -1,0 +1,12 @@
+{% extends "base.html" %}
+
+{% block content%}
+
+<form method="post" action="/edit/{{task.id}}">
+   <input name="title" class="form-control mb-2" placeholder="Titulo">
+   <input name="description" class="form-control mb-2" placeholder="Descripcion">
+   <input type="date" name="date" class="form-control mb-2">
+
+   <button class="btn btn-success">Actualizar</button>
+</form>
+{% endblock%}
