@@ -18,10 +18,18 @@ function App() {
   const [editingId,setEditingId] = useState<number | null>(null);
 
   const fetchTask = async () =>{
-  const res = await fetch(`${API}/api/tasks`);
-  const data = await res.json();
-  console.log(data)
-  setTasks(data);
+    try{
+        const res = await fetch(`${API}/api/tasks`);
+        if (!res.ok){
+          throw new Error("Error al cargar las tareas")
+        }
+        const data = await res.json();
+        console.log(data)
+        setTasks(data);
+    } catch (err){
+      console.log(err)
+      alert("No se pudiero cargar las tareas")
+    }
   }
 
   const handleSubmit = async (e: any)=> {
